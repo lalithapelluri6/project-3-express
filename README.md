@@ -1,0 +1,1 @@
+This is an Express and Mongoose based server to connect to react js app.

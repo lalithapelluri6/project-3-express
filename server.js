@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === "production") {
 //     console.log(`Error connecting to mongoDB: ${err}`);
 //   });
 
-<<<<<<< HEAD
 //Using session
 app.use(session({
   key: 'user_sid',
@@ -35,8 +34,7 @@ app.use(session({
 }));
 
 
-=======
->>>>>>> 5a042768d4a3d764cd11630a3a7185f3f682fea2
+
 // Init passport authentication 
 app.use(passport.initialize());
 // persistent login sessions. Session expires after 6 months, or when deleted by user 

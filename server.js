@@ -11,15 +11,15 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-mongoose.connect(mongoURL, {useNewUrlParser: true})
-  .then(() => {
-    console.log("Successfully connected to mongoDB.");
-  })
-  .catch((err) => {
-    console.log(`Error connecting to mongoDB: ${err}`);
-  });
+// mongoose.connect(mongoURL, {useNewUrlParser: true})
+//   .then(() => {
+//     console.log("Successfully connected to mongoDB.");
+//   })
+//   .catch((err) => {
+//     console.log(`Error connecting to mongoDB: ${err}`);
+//   });
 
 require("./routes/api-routes")(app);
 

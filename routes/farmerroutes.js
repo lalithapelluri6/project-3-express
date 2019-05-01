@@ -69,7 +69,7 @@ module.exports = function (app) {
 
     });
 
-// *********************************************
+    // *********************************************
 
 
     app.get("api/farmer/:id/produce", (req, res) => {
@@ -143,6 +143,7 @@ module.exports = function (app) {
         // this will delete specific store
 
     });
+    
 
     // **************************************
 
@@ -177,7 +178,7 @@ module.exports = function (app) {
 
     });
 
-// ***************************************************
+    // ***************************************************
 
 
 
@@ -194,30 +195,30 @@ module.exports = function (app) {
     });
 
 
-    app.post("api/farmer/:id/produce/:id", (req, res) => {
+    app.post("api/store/:id/produce/:id", (req, res) => {
 
-        // this will create new produce for specific farmer
-
-    });
-
-
-
-    app.put("api/farmer/:id/produce/:id", (req, res) => {
-
-        // this will update specific produce for specific farmer
-
-    });
-
-
-    app.delete("api/farmer/:id/produce/:id", (req, res) => {
-
-        // this will delete specific produce for specific farmer
+        // this will create new produce for specific store
 
     });
 
 
 
+    app.put("api/store/:id/produce/:id", (req, res) => {
+
+        // this will update specific produce for specific store
+
     });
+
+
+    app.delete("api/store/:id/produce/:id", (req, res) => {
+
+        // this will delete specific produce from specific store
+
+    });
+
+
+
+
 
 
 

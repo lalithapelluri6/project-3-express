@@ -21,7 +21,13 @@ if (process.env.NODE_ENV === "production") {
 //     console.log(`Error connecting to mongoDB: ${err}`);
 //   });
 
-require("./routes/api-routes")(app);
+// Init passport authentication 
+app.use(passport.initialize());
+// persistent login sessions. Session expires after 6 months, or when deleted by user 
+app.use(passport.session());
+
+
+require("./routes/user-api-routes")(app);
 
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`);

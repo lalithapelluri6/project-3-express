@@ -19,3 +19,15 @@ db.sequelize.sync({ force: true }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+//Using session
+app.use(session({
+  key: 'user_sid',
+  secret: 'goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    expires: 600000,
+    httpOnly: false
+  }
+}));

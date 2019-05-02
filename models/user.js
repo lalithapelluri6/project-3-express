@@ -1,3 +1,9 @@
+var Sequelize = require("sequelize");
+
+var uuidv1  = require('uuid/v1');
+
+var bcrypt  = require('bcrypt');  
+
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     userName: {
@@ -7,11 +13,12 @@ module.exports = function (sequelize, DataTypes) {
         len: [4, 20]
       }
     },
+
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [5, 10]
+        min: 5
       }
     },
     userType: {
@@ -26,6 +33,18 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
     },
   });
+
+  // methods ======================
+    // generating pw hash
+    User.generateHash = function(password) {
+      return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    };
+    // validate pw
+    User.prototype.validPassword = function(password) {
+      return bcrypt.compareSync(password, this.password);
+    };
+
+
 
   User.associate = (models) => {
     User.belongsToMany(models.Produce, {

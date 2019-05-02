@@ -35,5 +35,125 @@
 -- INSERT INTO Stores(Store_id,Name, Address, City, Zipcode, Email_address, Phonenumber) 
 -- VALUES (106,'Safe Way', '1701 Santa rita rd', 'Pleasanton','94566', "safewaysocialmedia@safeway.com",925-417-5530);
 
-INSERT INTO Users('user_id','userName','password','UserType','City','Zipcode')
-VALUES('101','')
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES(1001,'John Smith','password','Farmer','Hayward',94545);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES(1002,'Janet Fuller','password','Farmer','Hayward',94545);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES(1003,'Steven Buchnan','password','Farmer','Rio Vista',94545);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (1004,'Ricky Conner', 'password', 'Farmer','Ceres',95307);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (1005,'Mary Wood', 'password', 'Farmer','Ceres',95307);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (1006,'Robert King', 'password', 'Farmer','Sacramento Valley',95307);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (101,'Lucky', 'password','Store','Pleasanton',94588);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (102,'Walmart', 'password','Store', 'San Leandro',94579);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (103,'Walmart', 'password','Store', 'San Leandro',94579);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (104,"Trader's Joe",'password','Store', 'Danville',94526);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (105,'Whole Foods','password','Store','Dublin',94568);
+
+INSERT INTO Users(user_id,userName,password,UserType,City,Zipcode)
+VALUES (106,'Safe Way', 'password','Store','Pleasanton',94566);
+
+-- SEEDS FOR ASSOCIATIONS
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1003921-918, 'Broccoli');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1013594-856,'lettuce');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1023425-442,'carrots');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (103333-491,'bellpepper');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1043561-556,'basil');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1053498-824,'okra');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1063668-569,'apples');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1073790-330,'cilantro');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1083668-478,'banana');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1093561-590,'parsley');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1103743-623,'garlic');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1123176-600,'oranges');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1133240-812,'grapes');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1143276-900,'almonds');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1153354-622, 'poultry');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1163176-745,'livestock');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1173408-999,'strawberries');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1183298-200,'squash');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1193370-710,'dairy');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1043910-420,'beans');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1043987-583,'tomatoes');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1043888-654,'onions');
+
+INSERT INTO Produce(Prod_id, prod_Name)
+VALUES (1043180-945,'potatoes');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

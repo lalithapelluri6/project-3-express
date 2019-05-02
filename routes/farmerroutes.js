@@ -5,6 +5,16 @@ const path = require("path");
 
 module.exports = function (app) {
 
+app.get("/",(req,res) =>{
+
+//this is gonna be landing page
+
+});
+
+app.get("/")
+
+
+
     // For Users******************
 
     app.get("api/User", (req, res) => {
@@ -15,7 +25,7 @@ module.exports = function (app) {
 
     });
 
-    app.get("api/Userr/:id", (req, res) => {
+    app.get("api/User/:id", (req, res) => {
 
         //  will return specific users
     });
@@ -71,7 +81,7 @@ module.exports = function (app) {
     });
 
 
-    app.delete("api/User/:id/produce/:User_id", (req, res) => {
+    app.delete("api/User/:id/produce/:id", (req, res) => {
 
         // this will delete specific produce for specific User
 
@@ -227,4 +237,4 @@ module.exports = function (app) {
 
 
 
-// }
+}

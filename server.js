@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const app = express();
+const db = require("./models");
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -11,15 +12,13 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-// const mongoose = require("mongoose");
+// require("./routes/api-routes")(app);
 
-// mongoose.connect(mongoURL, {useNewUrlParser: true})
-//   .then(() => {
-//     console.log("Successfully connected to mongoDB.");
-//   })
-//   .catch((err) => {
-//     console.log(`Error connecting to mongoDB: ${err}`);
-//   });
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
 
 //Using session
 app.use(session({
@@ -32,17 +31,3 @@ app.use(session({
     httpOnly: false
   }
 }));
-
-
-
-// Init passport authentication 
-app.use(passport.initialize());
-// persistent login sessions. Session expires after 6 months, or when deleted by user 
-app.use(passport.session());
-
-
-require("./routes/user-api-routes")(app);
-
-app.listen(PORT, () => {
-  console.log(`API server now on port ${PORT}!`);
-});

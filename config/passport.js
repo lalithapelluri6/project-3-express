@@ -70,10 +70,14 @@ module.exports = function (passport) {
                         // create the user
                         db.User.create({
                             userName: req.body.userName,
-                            password: req.body.password,
+                            password: db.User.generateHash(req.body.password),
                             userType: req.body.userType,
+                            address: req.body.address,
                             zipcode: req.body.zipcode,
-                            city: req.body.city
+                            city: req.body.city,
+                            email: req.body.email,
+                            phone: req.body.phone,
+                            
                         }).then(function (dbUser) {
                             // send post back to render
                             return done(null, dbUser);

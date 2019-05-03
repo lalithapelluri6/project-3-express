@@ -15,7 +15,7 @@ module.exports = function (app) {
 
     });
 
-    app.get("api/Userr/:id", (req, res) => {
+    app.get("api/User/:id", (req, res) => {
 
         //  will return specific users
     });

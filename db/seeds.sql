@@ -142,6 +142,27 @@ VALUES (1043888-654,'onions');
 INSERT INTO Produce(Prod_id, prod_Name)
 VALUES (1043180-945,'potatoes');
 
+INSERT INTO Inventory(inven_id,prod_Name,price,stock_remain,threshold)
+VALUES (4011,banana,0.25,200,100);
+
+INSERT INTO Inventory(inven_id,prod_Name,price,stock_remain,threshold)
+VALUES (4026,squash,0.75,40,30);
+
+INSERT INTO Inventory(inven_id,prod_Name,price,stock_remain,threshold)
+VALUES (4013,strawberry,8.00,75,50);
+
+INSERT INTO Inventory(inven_id,prod_Name,price,stock_remain,threshold)
+VALUES (4065,apples,0.25,230,100);
+
+INSERT INTO Inventory(inven_id,prod_Name,price,stock_remain,threshold)
+VALUES (4019,oranges,0.20,200,100);
+
+INSERT INTO Inventory(inven_id,prod_Name,price,stock_remain,threshold)
+VALUES (4027,tomatoes,0.20,200,150);
+
+INSERT INTO Inventory(inven_id,prod_Name,price,stock_remain,threshold)
+VALUES (4031,onions,0.25,250,100);
+
 
 
 

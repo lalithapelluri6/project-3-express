@@ -2,18 +2,24 @@ require("dotenv").config();
 const axios = require("axios");
 const db = require("../../models");
 const path = require("path");
+const farmerController = require("../../controllers/farmercontroller");
+
+
+
+// Routes
 
 module.exports = function (app) {
 
-    // For Users******************
 
-    app.get("api/User", (req, res) => {
 
-        // this will return all users
+    // // the root route leads to /api/farmers/
 
-        // db.Farmer.find().then(
+    // app.get("/", farmerController.find);
 
-    });
+    app.get("/:id", (req, res) => {
+
+
+
 
     app.get("api/User/:id", (req, res) => {
 
@@ -34,7 +40,7 @@ module.exports = function (app) {
 
     app.delete("api/User/:id", (req, res) => {
 
-        // this will delete specific usre
+        // this will delete specific user
 
     });
 
@@ -42,7 +48,7 @@ module.exports = function (app) {
     // *********************************************
 
 
-    app.get("api/User/:id/produce", (req, res) => {
+    app.get("api/farmer/produce", (req, res) => {
 
         // this will return all produce belong to specific user
 
@@ -71,7 +77,7 @@ module.exports = function (app) {
     });
 
 
-    app.delete("api/User/:id/produce/:User_id", (req, res) => {
+    app.delete("api/User/:id/produce/:id", (req, res) => {
 
         // this will delete specific produce for specific User
 
@@ -215,10 +221,6 @@ module.exports = function (app) {
 //         // this will delete specific produce from specific store
 
 //     });
-
-
-
-
 
 
 

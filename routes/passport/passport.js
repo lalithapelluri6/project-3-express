@@ -16,7 +16,7 @@ router.post('/signin', (req, res, next) => {
 // =====================================
 
 // process the signup form
-router.post('/signup', (req, res, next) => {
+router.post('/register', (req, res, next) => {
   passportAuthenticate('local-signup', req, res, next);
 });
 

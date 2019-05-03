@@ -8,18 +8,18 @@ const passportRoutes = require("./passport/passport.js");
 router.use("/api", apiRoutes);
 
 // PSSPORT Routes
-// router.use("/", passportRoutes);
+router.use("/auth", passportRoutes);
 
-router.use("/", function handler(app) {
+// router.use("/", function handler(app) {
 
-    app.post("register", (req, res) => {
-        console.log(res);
-        console.log(req);
-        // this will create new user
+//     app.post("register", (req, res) => {
+//         console.log(res);
+//         console.log(req);
+//         // this will create new user
       
-      });
+//       });
 
-});
+// });
 
 
 

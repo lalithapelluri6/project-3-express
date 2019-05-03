@@ -20,8 +20,8 @@ module.exports = function (app) {
 
 
 
-    //leads to /api/farmers/:id
-    app.get("/:id", (req, res) => {
+
+    app.get("api/User/:id", (req, res) => {
 
         //  will return specific users
     });
@@ -229,8 +229,4 @@ module.exports = function (app) {
 
 
 
-
-
-
-
-}
+ }

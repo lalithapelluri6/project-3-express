@@ -8,7 +8,20 @@ const passportRoutes = require("./passport/passport.js");
 router.use("/api", apiRoutes);
 
 // PSSPORT Routes
-router.use("/", passportRoutes);
+// router.use("/", passportRoutes);
+
+router.use("/", function handler(app) {
+
+    app.post("register", (req, res) => {
+        console.log(res);
+        console.log(req);
+        // this will create new user
+      
+      });
+
+});
+
+
 
 // If no API routes are hit, send the React app
 // router.use((req, res) =>

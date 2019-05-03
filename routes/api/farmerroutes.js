@@ -25,6 +25,13 @@ module.exports = function (app) {
         // this will create new user
 
     });
+ 
+    app.post("register", (req, res) => {
+        console.log(res);
+        console.log(req);
+        // this will create new user
+
+    });
 
     app.put("api/User/:id", (req, res) => {
 

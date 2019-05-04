@@ -30,15 +30,26 @@ module.exports = {
   //   }
   //   res.status(401).json(err);  
   // },
+  findUsers: (req,res) => {
+    db.User.findAll({
+      where: {
+        UserType: req.params.UserType,
+      },
+    }).then(data => {
+      res.json(data);
+    }).catch(err => {
+      console.log(err);
+    })
+  },
   findfarmersByProduce: (req,res) => {
     db.User.findAll({
       where: {
-        UserType: 'farmer',  
+        userType: 'farmer',  
       },
       include: [{
         model: db.Produce,
         where: {
-          prod_Name: req.body.prod_Name
+          prod_Name: req.params.prod_Name
         }
       }]
     }).then((data) => {
@@ -46,5 +57,53 @@ module.exports = {
     }).catch(err => {
       console.log(err);
     });         
-  }
+  },
+  findStoresByInventoryAndPrice: (req,res) => {
+    db.User.findAll({
+      where: {
+        userType: 'store',
+      },
+      include: [{
+        model: db.inventory,
+        where: {
+          prod_Name: req.params.prod_Name,
+          price: req.params.price
+        }
+      }]
+    }).then(data => {
+      res.json(data);
+    }).catch(err => {
+      console.log(err);
+    }); 
+  },
+  insertUsers: (req,res) => {
+    db.User.create({
+      where: {
+        userName: req.body.userName,
+        userType: req.body.userType,
+        zipcode: req.body.zipcode,
+        city:  req.body.city,
+        address: req.body.address,
+        phone: req.body.phone,
+        email: req.body.email
+      }
+    }).then(data => {
+      res.json(data);
+    });
+  },
+ insertStores: (req,res) => {
+   db.User.create({
+     where: {
+       userName: req.body.userName,
+       userType: req.body.userType,
+       zipcode: req.body.zipcode,
+       city:req.body.city,
+       address: req.body.address,
+       phone: req.body.phone,
+       email:req.body.email
+     }
+   }).then(data => {
+     res.json(Data);
+   });
+ }
 };

@@ -16,11 +16,6 @@ module.exports = function (app) {
 
     // app.get("/", farmerController.find);
 
-    app.get("/:id", (req, res) => {
-
-
-
-
     app.get("api/User/:id", (req, res) => {
 
         //  will return specific users

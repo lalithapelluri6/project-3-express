@@ -67,7 +67,7 @@ module.exports = {
         model: db.inventory,
         where: {
           prod_Name: req.params.prod_Name,
-          price: req.params.price
+          // price: req.params.price
         }
       }]
     }).then(data => {

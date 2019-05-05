@@ -1,6 +1,10 @@
 // const sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-    var Inventory = sequelize.define("Inventory", {
+    var Inventories = sequelize.define("Inventories", {
+      inven_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       prod_Name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -19,10 +23,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-    Inventory.associate = (models) => {
-        Inventory.belongsToMany(models.User, {
-          through: {model: models.UserInventory}
+    Inventories.associate = (models) => {
+        Inventories.belongsToMany(models.Users, {
+          through: "UserInventories",
+          foreignKey: "inven_id" 
         });
        }
-    return Inventory;
+    return Inventories;
   };

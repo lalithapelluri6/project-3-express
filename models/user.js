@@ -5,7 +5,11 @@ var uuidv1  = require('uuid/v1');
 var bcrypt  = require('bcrypt');  
 
 module.exports = function (sequelize, DataTypes) {
-  var User = sequelize.define("User", {
+  var Users = sequelize.define("Users", {
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     userName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -45,23 +49,25 @@ module.exports = function (sequelize, DataTypes) {
 
   // methods ======================
     // generating pw hash
-    User.generateHash = function(password) {
+    Users.generateHash = function(password) {
       return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     };
     // validate pw
-    User.prototype.validPassword = function(password) {
+    Users.prototype.validPassword = function(password) {
       return bcrypt.compareSync(password, this.password);
     };
 
 
 
-  User.associate = (models) => {
-    User.belongsToMany(models.Produce, {
-      through: {model: models.UserProduce}
+  Users.associate = (models) => {
+    Users.belongsToMany(models.Produces, {
+      through: {model: models.UserProduces},
+      foreignKey: 'user_id'
     });
-    User.belongsToMany(models.Inventory, {
-      through: { model: models.UserInventory }
+    Users.belongsToMany(models.Inventories, {
+      through: "UserInventories",
+      foreignKey: 'user_id'
     });
    }
-  return User;
+  return Users;
 };

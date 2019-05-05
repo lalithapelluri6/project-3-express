@@ -9,9 +9,8 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const session = require('express-session'); 
 
-const routes = require("./routes"
+const routes = require("./routes");
 
-)
 const PORT = process.env.PORT || 3001;
 
 require('./config/passport')(passport);

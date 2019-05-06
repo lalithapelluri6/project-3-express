@@ -1,10 +1,6 @@
 // const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
     var Produces = sequelize.define("Produces", {
-      prod_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
       prod_Name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -14,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
 
     Produces.associate = (models) => {
         Produces.belongsToMany(models.Users, {
-          through: "farmerProduces"
+          through: models.farmerProduces
         });
       }
     return Produces;

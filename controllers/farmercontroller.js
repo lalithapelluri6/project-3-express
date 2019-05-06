@@ -31,11 +31,11 @@ module.exports = {
   //   res.status(401).json(err);  
   // },
   findUsers: (req,res) => {
-    if (req.isAuthenticated())
+    // if (req.isAuthenticated())
     db.Users.findAll({
-      where: {
-        UserType: req.params.UserType,
-      },
+      // where: {
+      //   UserType: req.params.UserType,
+      // },
     }).then(data => {
       res.json(data);
     }).catch(err => {

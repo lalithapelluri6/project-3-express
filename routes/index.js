@@ -1,18 +1,18 @@
 const path   = require("path");
 const router = require("express").Router();
 
-const farmerRoutes 	 = require("./api/farmerroutes.js");
+const apiRoutes 	 = require("./api");
 const passportRoutes = require("./passport/passport.js");
 
 // API Routes
-router.use("/api", farmerRoutes);
+router.use("/api", apiRoutes);
 
 // PSSPORT Routes
-router.use("/", passportRoutes);
+router.use("/auth", passportRoutes);
 
-// If no API routes are hit, send the React app
-router.use((req, res) =>
-  res.sendFile(path.join(__dirname, "../../client/build/index.html"))
-);
+// If no API routes are hit, send the React app - change to deployed GH Pages link
+  // router.use((req, res) =>
+  //   res.sendFile(path.join(__dirname, "../../client/build/index.html"))
+  // );
 
 module.exports = router;

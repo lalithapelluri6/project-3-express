@@ -8,6 +8,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const session = require('express-session'); 
+const cors = require("cors");
 
 const routes = require("./routes");
 
@@ -19,6 +20,7 @@ require('./config/passport')(passport);
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
@@ -41,12 +43,15 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 // app.use(methodO("_method"));
 
-app.use(routes);
+app.use("/", routes);
+
+
 
 
 // require("./routes/api-routes")(app);
 
-db.sequelize.sync({ force: true }).then(function() {
+// can keep true while developing
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

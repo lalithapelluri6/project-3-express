@@ -8,6 +8,7 @@ const passport = require('passport');
 
 // process the login form
 router.post('/signin', (req, res, next) => {
+  console.log("/auth//signin get route hit")
   passportAuthenticate('local-login', req, res, next);
 });
 

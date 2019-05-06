@@ -6,7 +6,7 @@ CREATE DATABASE farmerandstore_db;
 USE farmerandstore_db;
 
 CREATE TABLE Users(
- user_id INT NOT NULL AUTO_INCREMENT,
+ id INT NOT NULL AUTO_INCREMENT,
  userName VARCHAR(45) NOT NULL,
  Password VARCHAR(25) NOT NULL,
  userType VARCHAR(20) NOT NULL,
@@ -15,13 +15,14 @@ CREATE TABLE Users(
  city VARCHAR(40) NOT NULL,
  zipcode INT(10) NOT NULL,
  phone INT(10) NOT NULL,
- PRIMARY KEY(user_id)
+ PRIMARY KEY(id)
 );
 
 CREATE TABLE Produces(
+    id INT NOT NULL AUTO_INCREMENT,
 Prod_id Int(11) AUTO_INCREMENT NOT NULL,   
 prod_Name VARCHAR(40) NOT NULL,
-PRIMARY KEY(Prod_id)
+PRIMARY KEY(id)
 );
 
 
@@ -44,8 +45,6 @@ PRIMARY KEY(Prod_id)
 CREATE TABLE farmer_Produces(
     user_id INT NOT NULL,
     prod_id INT NOT NULL,
-    prod_Name VARCHAR(20) NOT NULL,
-    quantity INT NOT NULL   
 );
 
 CREATE TABLE store_Produces(

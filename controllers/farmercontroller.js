@@ -48,7 +48,7 @@ module.exports = {
         userType: 'farmer',  
       },
       include: [{
-        models: db.farmerProduces,
+        model: db.farmerProduces,
         where: {
           prod_Name: req.params.prod_Name
         }
@@ -61,17 +61,19 @@ module.exports = {
     });         
   },
   findStoresByInventory: (req,res) => {
-    db.Users.findAll({
+    db.Produces.findAll({
       where: {
-        userType: 'store',
+        prod_Name: req.params.prod_Name,
       },
       include: [{
-        models: db.storeProduces,
+        model: db.Users,
+      
         where: {
-          prod_Name: req.params.prod_Name,
-          // price: req.params.price
+          userType:'store'
         }
-      }]
+          // price: req.params.price
+        }],
+      
     }).then(data => {
       res.json(data);
     }).catch(err => {

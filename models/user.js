@@ -6,6 +6,10 @@ var bcrypt  = require('bcrypt');
 
 module.exports = function (sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     userName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -61,7 +65,7 @@ module.exports = function (sequelize, DataTypes) {
       through: {model: models.farmerProduces}
     });
     Users.belongsToMany(models.Produces, {
-      through: "farmerProduces"
+      through: {model: models.storerProduces}
     });
    }
   return Users;

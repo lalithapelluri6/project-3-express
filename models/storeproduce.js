@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var storeProduces = sequelize.define("storeProduces", {
-      _id: {
+      UserId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {

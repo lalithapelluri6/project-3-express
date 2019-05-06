@@ -5,24 +5,24 @@ CREATE DATABASE farmerandstore_db;
 
 USE farmerandstore_db;
 
-CREATE TABLE Users(
- id INT NOT NULL AUTO_INCREMENT,
- userName VARCHAR(45) NOT NULL,
- Password VARCHAR(25) NOT NULL,
- userType VARCHAR(20) NOT NULL,
- email VARCHAR(30) NOT NULL,
- address VARCHAR(30) NOT NULL,
- city VARCHAR(40) NOT NULL,
- zipcode INT(10) NOT NULL,
- phone INT(10) NOT NULL,
- PRIMARY KEY(id)
-);
+-- CREATE TABLE Users(
+--  id INT NOT NULL AUTO_INCREMENT,
+--  userName VARCHAR(45) NOT NULL,
+--  Password VARCHAR(25) NOT NULL,
+--  userType VARCHAR(20) NOT NULL,
+--  email VARCHAR(30) NOT NULL,
+--  address VARCHAR(30) NOT NULL,
+--  city VARCHAR(40) NOT NULL,
+--  zipcode INT(10) NOT NULL,
+--  phone INT(10) NOT NULL,
+--  PRIMARY KEY(id)
+-- );
 
-CREATE TABLE Produces(
-    id INT NOT NULL AUTO_INCREMENT,
-Prod_id Int(11) AUTO_INCREMENT NOT NULL,   
-prod_Name VARCHAR(40) NOT NULL,
-PRIMARY KEY(id)
+-- CREATE TABLE Produces(
+--     id INT NOT NULL AUTO_INCREMENT,
+-- Prod_id Int(11) AUTO_INCREMENT NOT NULL,   
+-- prod_Name VARCHAR(40) NOT NULL,
+-- PRIMARY KEY(id)
 );
 
 
@@ -42,15 +42,15 @@ PRIMARY KEY(id)
 --     stock_remain INT NOT NULL
 -- );
 
-CREATE TABLE farmer_Produces(
-    user_id INT NOT NULL,
-    prod_id INT NOT NULL,
-);
+-- CREATE TABLE farmer_Produces(
+--     user_id INT NOT NULL,
+--     prod_id INT NOT NULL,
+-- );
 
-CREATE TABLE store_Produces(
-    user_id INT NOT NULL,
-    prod_id INT NOT NULL,
-    stock_remain INT(20) NOT NULL,
-    threshold INT(20) NOT NULL,
-    price FLOAT NOT NULL   
-);
+-- CREATE TABLE store_Produces(
+--     user_id INT NOT NULL,
+--     prod_id INT NOT NULL,
+--     stock_remain INT(20) NOT NULL,
+--     threshold INT(20) NOT NULL,
+--     price FLOAT NOT NULL   
+-- );

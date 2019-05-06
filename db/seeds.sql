@@ -141,7 +141,7 @@ VALUES (1, 8), (2, 5);
 
 
 
-INSERT INTO store_Produces(user_id,prod_id,stock_remain,threshold,price)
+INSERT INTO store_Produces(stock_remain,threshold,price)
 VALUES (102,1063668-569,300,250,0.30);
 
 INSERT INTO store_Produces(user_id,prod_id,stock_remain,threshold,price)

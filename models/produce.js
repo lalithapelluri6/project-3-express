@@ -1,21 +1,22 @@
 // const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-    var Produce = sequelize.define("Produce", {
+    var Produces = sequelize.define("Produces", {
+      prod_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       prod_Name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
       },
-      price: {
-          type: DataTypes.FLOAT,
-          allowNull: false,
-      },
     });
 
-    Produce.associate = (models) => {
-        Produce.belongsToMany(models.User, {
-          through: 'UserProduce'
+    Produces.associate = (models) => {
+        Produces.belongsToMany(models.Users, {
+          through: "farmerProduce",
+          foreignKey: "prod_id"
         });
       }
-    return Produce;
+    return Produces;
   };

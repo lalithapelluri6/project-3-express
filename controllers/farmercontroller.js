@@ -31,7 +31,8 @@ module.exports = {
   //   res.status(401).json(err);  
   // },
   findUsers: (req,res) => {
-    db.User.findAll({
+    if (req.isAuthenticated())
+    db.Users.findAll({
       where: {
         UserType: req.params.UserType,
       },
@@ -42,29 +43,30 @@ module.exports = {
     })
   },
   findfarmersByProduce: (req,res) => {
-    db.User.findAll({
+    db.Users.findAll({
       where: {
         userType: 'farmer',  
       },
       include: [{
-        model: db.Produce,
+        models: db.farmerProduces,
         where: {
           prod_Name: req.params.prod_Name
         }
       }]
     }).then((data) => {
       res.json(data);
+      console.log("findby farmers by produce:" + data);
     }).catch(err => {
       console.log(err);
     });         
   },
-  findStoresByInventoryAndPrice: (req,res) => {
-    db.User.findAll({
+  findStoresByInventory: (req,res) => {
+    db.Users.findAll({
       where: {
         userType: 'store',
       },
       include: [{
-        model: db.inventory,
+        models: db.storeProduces,
         where: {
           prod_Name: req.params.prod_Name,
           // price: req.params.price
@@ -76,9 +78,9 @@ module.exports = {
       console.log(err);
     }); 
   },
-  insertUsers: (req,res) => {
-    db.User.create({
-      where: {
+  insertFarmers: (req,res) => {
+    if (req.isAuthenticated())
+    db.Users.create({
         userName: req.body.userName,
         userType: req.body.userType,
         zipcode: req.body.zipcode,
@@ -86,14 +88,14 @@ module.exports = {
         address: req.body.address,
         phone: req.body.phone,
         email: req.body.email
-      }
+      
     }).then(data => {
       res.json(data);
     });
   },
  insertStores: (req,res) => {
-   db.User.create({
-     where: {
+  if (req.isAuthenticated())
+   db.Users.create({
        userName: req.body.userName,
        userType: req.body.userType,
        zipcode: req.body.zipcode,
@@ -101,9 +103,9 @@ module.exports = {
        address: req.body.address,
        phone: req.body.phone,
        email:req.body.email
-     }
    }).then(data => {
-     res.json(Data);
+     res.json(data);
+     console.log("insertStores:" + data);
    });
  }
 };

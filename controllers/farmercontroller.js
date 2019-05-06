@@ -31,6 +31,7 @@ module.exports = {
   //   res.status(401).json(err);  
   // },
   findUsers: (req,res) => {
+    if (req.isAuthenticated())
     db.Users.findAll({
       where: {
         UserType: req.params.UserType,
@@ -47,7 +48,7 @@ module.exports = {
         userType: 'farmer',  
       },
       include: [{
-        models: db.Produces,
+        models: db.farmerProduces,
         where: {
           prod_Name: req.params.prod_Name
         }
@@ -59,13 +60,13 @@ module.exports = {
       console.log(err);
     });         
   },
-  findStoresByInventoryAndPrice: (req,res) => {
+  findStoresByInventory: (req,res) => {
     db.Users.findAll({
       where: {
         userType: 'store',
       },
       include: [{
-        models: db.inventories,
+        models: db.storeProduces,
         where: {
           prod_Name: req.params.prod_Name,
           // price: req.params.price
@@ -77,7 +78,8 @@ module.exports = {
       console.log(err);
     }); 
   },
-  insertUsers: (req,res) => {
+  insertFarmers: (req,res) => {
+    if (req.isAuthenticated())
     db.Users.create({
         userName: req.body.userName,
         userType: req.body.userType,
@@ -92,6 +94,7 @@ module.exports = {
     });
   },
  insertStores: (req,res) => {
+  if (req.isAuthenticated())
    db.Users.create({
        userName: req.body.userName,
        userType: req.body.userType,
@@ -102,6 +105,7 @@ module.exports = {
        email:req.body.email
    }).then(data => {
      res.json(data);
+     console.log("insertStores:" + data);
    });
  }
 };

@@ -105,65 +105,89 @@ VALUES (1043888-654,'onions');
 INSERT INTO Produces(Prod_id, prod_Name)
 VALUES (1043180-945,'potatoes');
 
--- INVENTORY TABLE
+-- -- INVENTORY TABLE
 
-INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
-VALUES (4011,'banana',0.25,200,100);
+-- INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
+-- VALUES (4011,'banana',0.25,200,100);
 
-INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
-VALUES (4026,'squash',0.75,40,30);
+-- INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
+-- VALUES (4026,'squash',0.75,40,30);
 
-INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
-VALUES (4013,'strawberry',8.00,75,50);
+-- INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
+-- VALUES (4013,'strawberry',8.00,75,50);
 
-INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
-VALUES (4065,'apples',0.25,230,100);
+-- INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
+-- VALUES (4065,'apples',0.25,230,100);
 
-INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
-VALUES (4019,'oranges',0.20,200,100);
+-- INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
+-- VALUES (4019,'oranges',0.20,200,100);
 
-INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
-VALUES (4027,'tomatoes',0.20,200,150);
+-- INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
+-- VALUES (4027,'tomatoes',0.20,200,150);
 
-INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
-VALUES (4031,'onions',0.25,250);
+-- INSERT INTO Inventories(inven_id,prod_Name,price,stock_remain,threshold)
+-- VALUES (4031,'onions',0.25,250);
 
 -- USER INVENTORY JOINING TABLE
 
-INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
-VALUES (103,'onions',250);
+-- INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
+-- VALUES (103,'onions',250);
 
-INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
-VALUES (102,'tomatoes',140);
+-- INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
+-- VALUES (102,'tomatoes',140);
 
-INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
-VALUES (101,'oranges',200);
+-- INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
+-- VALUES (101,'oranges',200);
 
-INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
-VALUES (104,'apples',175);
+-- INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
+-- VALUES (104,'apples',175);
 
-INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
-VALUES (106,'banana',200);
+-- INSERT INTO User_Inventories(user_id,prod_Name,stock_remain)
+-- VALUES (106,'banana',200);
 
--- USER PRODUCE Join TABLE
+-- USER(farmer) PRODUCE Join TABLE
 
-INSERT INTO User_Produce(user_id,prod_Name)
-VALUES (1001,'onions');
+INSERT INTO farmer_Produces(user_id,prod_id,prod_Name,quantity)
+VALUES (1001,1043888-654,'onions',500);
 
-INSERT INTO User_Produce(user_id,prod_Name)
-VALUES (1006,'strawberrys');
+INSERT INTO farmer_Produces(user_id,prod_id,prod_Name,quantity)
+VALUES (1006,1173408-999,'strawberries',500);
 
-INSERT INTO User_Produce(user_id,prod_Name)
-VALUES (1004,'grapes');
+INSERT INTO farmer_Produces(user_id,prod_id,prod_Name,quantity)
+VALUES (1004,1133240-812,'grapes',100);
 
-INSERT INTO User_Produce(user_id,prod_Name)
-VALUES (1003,'dairy');
+INSERT INTO farmer_Produces(user_id,prod_id,prod_Name,quantity)
+VALUES (1002,1193370-710,'dairy',30);
 
-INSERT INTO User_Produce(user_id,prod_Name)
-VALUES (1001,'livestock');
+INSERT INTO farmer_Produces(user_id,prod_id,prod_Name,quantity)
+VALUES (1005,1163176-745,'livestock',30);
 
-INSERT INTO User_Produce(user_id,prod_Name)
-VALUES (1003,'apples');
+INSERT INTO farmer_Produces(user_id,prod_id,prod_Name,quantity)
+VALUES (1003,1063668-569,'apples',500);
+
+
+-- USERS(STORES) PRODUCES TABLE
+
+
+
+INSERT INTO store_Produces(user_id,prod_id,stock_remain,threshold,price)
+VALUES (102,1063668-569,300,250,0.30);
+
+INSERT INTO store_Produces(user_id,prod_id,stock_remain,threshold,price)
+VALUES (103,1163176-745,30,15,15,3.00);
+
+INSERT INTO store_Produces(user_id,prod_id,stock_remain,threshold,price)
+VALUES (104,1173408-999,30,15,20,3.00);
+
+INSERT INTO store_Produces(user_id,prod_id,stock_remain,threshold,price)
+VALUES (101,1193370-710,35,16,15,3.00);
+
+INSERT INTO store_Produces(user_id,prod_id,stock_remain,threshold,price)
+VALUES (105,1193370-710,35,16,15,3.00);
+
+
+
+
 
 
 

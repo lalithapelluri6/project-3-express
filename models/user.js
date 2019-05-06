@@ -29,22 +29,23 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    zipcode: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    city: {
+    email: {
       type: DataTypes.STRING,
     },
     address: {
       type: DataTypes.STRING,
     },
+    city: {
+      type: DataTypes.STRING,
+    },
+    zipcode: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },   
     phone: {
       type: DataTypes.INTEGER,     
     },
-    email: {
-      type: DataTypes.STRING,
-    }
+    
   });
 
   // methods ======================
@@ -61,11 +62,11 @@ module.exports = function (sequelize, DataTypes) {
 
   Users.associate = (models) => {
     Users.belongsToMany(models.Produces, {
-      through: {model: models.UserProduces},
+      through: {model: models.farmerProduces},
       foreignKey: 'user_id'
     });
-    Users.belongsToMany(models.Inventories, {
-      through: "UserInventories",
+    Users.belongsToMany(models.Produces, {
+      through: "farmerProduces",
       foreignKey: 'user_id'
     });
    }

@@ -10,15 +10,11 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         unique: true
       },
-      price: {
-          type: DataTypes.FLOAT,
-          allowNull: false,
-      },
     });
 
     Produces.associate = (models) => {
         Produces.belongsToMany(models.Users, {
-          through: "userProduce",
+          through: "farmerProduce",
           foreignKey: "prod_id"
         });
       }

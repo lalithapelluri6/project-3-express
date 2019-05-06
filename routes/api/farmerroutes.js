@@ -14,26 +14,26 @@ const router = require("express").Router();
 module.exports = function (app) {
     
     
-    app.get("api/farmer/:prod_Name", farmerController.findfarmersByProduce);
+    router.get("api/farmer/:prod_Name", farmerController.findfarmersByProduce);
     // this will return all farmers by produce.
 
 
 
-    app.get("api/user/:UserType", farmerController.findUsers);
+    router.get("api/user/:UserType", farmerController.findUsers);
     // this will return all users by User type.
 
 
 
-    app.get("api/user/store/product/:Prod_Name/price/:price", farmerController.findStoresByInventoryAndPrice);
+    router.get("api/user/store/product/:Prod_Name/price/:price", farmerController.findStoresByInventoryAndPrice);
 
     // this will return stores by product and price
 
 
-    app.post("api/user", farmerController.insertUsers);
+    router.post("api/user", farmerController.insertUsers);
     // this will create new user
 
 
-    app.post("api/store", farmerController.insertStores);
+    router.post("api/store", farmerController.insertStores);
     //  this will create new store
 
     
@@ -42,7 +42,7 @@ module.exports = function (app) {
    
     // app.put("api/inventory/:Inventory",farmerController.updateUsers);
 
-    app.get("api/store/:prod_Name", farmerController.findStoresByInventory);
+    router.get("api/store/:prod_Name", farmerController.findStoresByInventory);
     // this will return all stores by produce.
 
 }

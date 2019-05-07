@@ -23,7 +23,7 @@ USE farmerandstore_db;
 -- Prod_id Int(11) AUTO_INCREMENT NOT NULL,   
 -- prod_Name VARCHAR(40) NOT NULL,
 -- PRIMARY KEY(id)
-);
+-- );
 
 
 -- CREATE TABLE Inventories(

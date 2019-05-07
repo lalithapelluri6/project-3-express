@@ -31,11 +31,21 @@ module.exports = {
   //   res.status(401).json(err);  
   // },
   findUsers: (req,res) => {
-    // if (req.isAuthenticated())
     db.Users.findAll({
-      // where: {
-      //   UserType: req.params.UserType,
-      // },
+      where: {
+        userType: 'Farmer',
+      }
+    }).then(data => {
+      res.json(data);
+    }).catch(err => {
+      console.log(err);
+    })
+  },
+  findStoreUsers: (req,res) => {
+    db.Users.findAll({
+      where: {
+        userType: 'Store',
+      }
     }).then(data => {
       res.json(data);
     }).catch(err => {
@@ -43,14 +53,14 @@ module.exports = {
     })
   },
   findfarmersByProduce: (req,res) => {
-    db.Users.findAll({
+    db.Produces.findAll({
       where: {
-        userType: 'farmer',  
+      prod_Name: req.params.id     
       },
       include: [{
-        model: db.farmerProduces,
+        model: db.Users,
         where: {
-          prod_Name: req.params.prod_Name
+          userType: 'Farmer',
         }
       }]
     }).then((data) => {
@@ -60,16 +70,17 @@ module.exports = {
       console.log(err);
     });         
   },
+
   findStoresByInventory: (req,res) => {
     db.Produces.findAll({
       where: {
-        prod_Name: req.params.prod_Name,
+        prod_Name: req.params.id,
       },
       include: [{
         model: db.Users,
       
         where: {
-          userType:'store'
+          userType:'Store'
         }
           // price: req.params.price
         }],
@@ -93,6 +104,12 @@ module.exports = {
       
     }).then(data => {
       res.json(data);
+    });
+  },
+  u: function (req,res){
+    db.Users.findAll({})
+    .then(function(u){
+      res.json(u)
     });
   },
  insertStores: (req,res) => {

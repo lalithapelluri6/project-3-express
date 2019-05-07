@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var db  = require('../models');
 
 // expose this function to our app using module.exports
-module.exports = function(passport) {
+module.exports = (passport) => {
     // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
@@ -15,13 +15,13 @@ module.exports = function(passport) {
     // passport needs ability to serialize and unserialize users out of session
 
     // used to serialize the user for the session
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser((user, done) => {
         done(null, user.uuid);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function(uuid, done) {
-        db.User.findById(uuid).then(function(user) {
+    passport.deserializeUser((uuid, done) => {
+        db.User.findOne({where:{uuid: uuid}}).then(function(user) {
 
 	        if (user) {
 
@@ -47,7 +47,7 @@ passport.use('local-signup', new LocalStrategy({
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, userName, password, done) {
+    (req, userName, password, done)=> {
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
@@ -58,25 +58,33 @@ passport.use('local-signup', new LocalStrategy({
             where: {
             	userName: userName
             }
-        }).then(function(user, err){
+        }).then((user, err) =>{
         	if(err) {
                 return done(err);
             }
             // check to see if theres already a user with that userName
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That userName is already taken.'));
+                return done(null, false, req.flash('signupMessage', 'That user name is already taken.'));
             } else {
                 // if there is no user with that userName
                 // create the user
                 db.User.create({
-						    userName: req.body.userName,
-						    password: db.User.generateHash(password)
+                            first_name:req.body.first_name,
+                            last_name: req.body.last_name,
+                            userName: req.body.userName,
+                            email: req.body.email,
+                            userType: req.body.userType,
+                            address: req.body.address,
+                            zipcode: req.body.zipcode,
+                            city: req.body.city,
+                            phone: req.body.phone,
+						    password: db.User.generateHash(req.body.password)
 
-						    }).then(function(dbUser) {
+						    }).then((dbUser) =>{
 						      // send post back to render
 						      return done(null, dbUser);
 
-						    }).catch(function (err) {
+						    }).catch( (err) =>{
 						      // handle error;
 						      console.log(err);
 						    });
@@ -98,14 +106,17 @@ passport.use('local-login', new LocalStrategy({
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, userName, password, done) { // callback with userName and password from our form
+    (req, userName, password, done)=> { // callback with userName and password from our form
+        console.log("testtttttt")
         // find a user whose userName is the same as the forms userName
         // we are checking to see if the user trying to login already exists
+        console.log("username", req.body.userName);
+
         db.User.findOne({
             where: {
                 userName: req.body.userName
             }
-        }).then(function(user, err) {
+        }).then((user, err) => {
             // if there are any errors, return the error before anything else
             if (err){
                 console.log("err", err);
@@ -113,12 +124,12 @@ passport.use('local-login', new LocalStrategy({
             }
             // if no user is found, return the message
             if (!user){
-                return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                console.log("there is a error")
+                return done(null, false, 'No user found.'); // req.flash is the way to set flashdata using connect-flash
             }
             // if the user is found but the password is wrong
             if (user && !user.validPassword(req.body.password)){
-
-                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                return done(null, false, 'Oops! Wrong password.'); // create the loginMessage and save it to session as flashdata
             }
             // all is well, return successful user
             return done(null, user);

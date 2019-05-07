@@ -8,7 +8,7 @@ const passport = require('passport');
 
 // process the login form
 router.post('/signin', (req, res, next) => {
-  console.log("/auth//signin get route hit")
+  console.log("/auth/signin get route hit")
   passportAuthenticate('local-login', req, res, next);
 });
 
@@ -17,7 +17,7 @@ router.post('/signin', (req, res, next) => {
 // =====================================
 
 // process the signup form
-router.post('/signup', (req, res, next) => {
+router.post('/register', (req, res, next) => {
   passportAuthenticate('local-signup', req, res, next);
 });
 
@@ -28,11 +28,14 @@ router.post('/signup', (req, res, next) => {
 passportAuthenticate = (localStrategy, req, res, next) => {
   passport.authenticate(localStrategy, function(err, user, info) {
     if (err) {
+      console.log("next", err)
       return next(err); // will generate a 500 error
     }
     // Generate a JSON response reflecting authentication status
-    if (! user) {
-      return res.send({ success : false, message : 'authentication failed' });
+    if (!user) {
+      console.log("user",user)
+      console.log("info", info)
+      return res.send({ success : false, message : info });
     }
 
     // ***********************************************************************
@@ -55,6 +58,7 @@ passportAuthenticate = (localStrategy, req, res, next) => {
         console.log("\n")
 
         res.cookie('user_email', user.email );
+        res.cookie('user_type', user.userType );
         res.cookie('authenticated', "true" );
 
         return res.json(true);
@@ -74,9 +78,23 @@ router.get('/logout', (req, res) => {
       req.logout();
       res.clearCookie("user_sid");
       res.clearCookie("user_email");
+      res.clearCookie("user_type");
       res.clearCookie("authenticated");
       res.json(false);
     });
 });
+
+// =====================================
+// Check Auth ==========================
+// =====================================
+
+router.get('/', (req, res)=>{
+  if(req.isAuthenticated()){
+    res.json(true)
+  }else {
+    res.json(false)
+  }
+})
+
 
 module.exports = router;

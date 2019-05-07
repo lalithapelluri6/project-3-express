@@ -1,24 +1,36 @@
+var bcrypt  = require('bcrypt');  
 var Sequelize = require("sequelize");
 
-var uuidv1  = require('uuid/v1');
-
-var bcrypt  = require('bcrypt');  
 
 module.exports = function (sequelize, DataTypes) {
-  var Users = sequelize.define("Users", {
+  var User = sequelize.define("User", {
+    uuid: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      isUnique :true
+    },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     userName: {
       type: DataTypes.STRING,
+      isUnique :true,
       allowNull: false,
       validate: {
-        len: [4, 20]
+        len: [1, 20]
       }
     },
-
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        min: 5
+        min: 6
       }
     },
     userType: {
@@ -27,42 +39,50 @@ module.exports = function (sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING,
+      isUnique :true,
+      allowNull: false
     },
     address: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     city: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     zipcode: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false
     },   
     phone: {
-      type: DataTypes.INTEGER,     
+      type: DataTypes.STRING,
+      allowNull: false,    
     },
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE
     
   });
 
   // methods ======================
     // generating pw hash
-    Users.generateHash = function(password) {
+    User.generateHash = function(password) {
       return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     };
     // validate pw
-    Users.prototype.validPassword = function(password) {
+    User.prototype.validPassword = function(password) {
       return bcrypt.compareSync(password, this.password);
     };
 
 
+    User.associate = (models) => {
+      User.belongsToMany(models.Produce, {
+        through: models.FarmerProduce
+    });
 
-  Users.associate = (models) => {
-    Users.belongsToMany(models.Produces, {
-      through: models.farmerProduces
-    });
-    Users.belongsToMany(models.Produces, {
-      through: models.storeProduces
-    });
+    // Users.belongsToMany(models.Produces, {
+    //   through: models.storeProduces
+    // });
+    
    }
-  return Users;
+  return User;
 };

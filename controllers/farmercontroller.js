@@ -30,6 +30,66 @@ module.exports = {
   //   }
   //   res.status(401).json(err);  
   // },
+  getUser: (req, res) =>{
+  
+    if(req.isAuthenticated){
+      db.User
+      .findOne({where: {uuid: req.session.passport.user}})
+      .then(dbUser => {
+        let user = {
+          first_name:dbUser.dataValues.first_name,
+          last_name: dbUser.dataValues.last_name, 
+          email: dbUser.dataValues.email,
+          address:dbUser.dataValues.address,
+          zipcode: dbUser.dataValues.zipcode,
+          city:dbUser.dataValues.city,
+          userName:dbUser.dataValues.userName,
+          userType:dbUser.dataValues.userType,
+          phone:dbUser.dataValues.phone,
+          createAt:dbUser.dataValues.createAt
+        }
+        res.json(user)
+      })
+    }else {
+      res.json(false)
+    }
+  },
+  updateUser: (req, res) =>{
+    console.log(req.body)
+    
+    if(req.isAuthenticated){
+      console.log( req.session.passport.user)
+      db.User
+      .update(req.body, {where: {uuid: req.session.passport.user}})
+      .then(dbUser => {
+        if(dbUser[0] > 0){
+          db.User
+          .findOne({where: {uuid: req.session.passport.user}})
+          .then(dbUser => {
+            let user = {
+              first_name:dbUser.dataValues.first_name,
+              last_name: dbUser.dataValues.last_name, 
+              email: dbUser.dataValues.email,
+              address:dbUser.dataValues.address,
+              zipcode: dbUser.dataValues.zipcode,
+              city:dbUser.dataValues.city,
+              userName:dbUser.dataValues.userName,
+              userType:dbUser.dataValues.userType,
+              phone:dbUser.dataValues.phone,
+              createAt:dbUser.dataValues.createAt
+            }
+            res.json(user)
+          })
+        }else {
+          res.json(false)
+        }
+       
+      })
+    }else {
+      res.json(false)
+    }
+  },
+
   findUsers: (req,res) => {
     // if (req.isAuthenticated())
     db.Users.findAll({
@@ -43,19 +103,39 @@ module.exports = {
     })
   },
   findfarmersByProduce: (req,res) => {
-    db.Users.findAll({
+    db.User.findAll({
       where: {
         userType: 'farmer',  
       },
-      include: [{
-        models: db.farmerProduces,
-        where: {
-          prod_Name: req.params.prod_Name
+      // include: [{
+      //   models: db.FarmerProduce,
+      //   where: {
+      //     prod_Name: req.body.prod_Name
+      //   }
+      // }]
+    }).then((users) => {
+     
+      let farmers = []
+      users.forEach(user=>{
+        console.log();
+        if(user.dataValues.uuid !== req.session.passport.user) {
+          let farmer = {
+            first_name:user.dataValues.first_name,
+            last_name: user.dataValues.last_name, 
+            email: user.dataValues.email,
+            address:user.dataValues.address,
+            zipcode: user.dataValues.zipcode,
+            city:user.dataValues.city,
+            userName:user.dataValues.userName,
+            userType:user.dataValues.userType,
+            phone:user.dataValues.phone,
+            createAt:user.dataValues.createAt
+          }
+          farmers.push(farmer);
         }
-      }]
-    }).then((data) => {
-      res.json(data);
-      console.log("findby farmers by produce:" + data);
+     })
+
+      res.json(farmers);
     }).catch(err => {
       console.log(err);
     });         

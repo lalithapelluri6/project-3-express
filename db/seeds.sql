@@ -1,3 +1,4 @@
+
 INSERT INTO Users(userName,password,userType,email,address,city,zipcode,phone,createdAt,updatedAt)
 VALUES('John Smith','password','Farmer','johnS@gmail.com','25500 Clawiter Rd','Hayward',94545,510-265-8600,now(),now()),
 ('Janet Fuller','password','Farmer','jFuller@gmail.com','3440 Enterprise Ave','Hayward',94545,510-783-1270,now(),now()),
@@ -9,6 +10,7 @@ VALUES('John Smith','password','Farmer','johnS@gmail.com','25500 Clawiter Rd','H
 ("Trader's Joe",'password','Store','inquiry@tradersjoe.com','85 Railroad Ave','Danville',94526,925-838-5757,now(),now()),
 ('Whole Foods','password','Store','Servicedesk@wholefoods.com','5200 Dublin Blvd','Dublin',94568,925-452-2226,now(),now()),
 ('Safe Way', 'password','Store','safewaysocialmedia@safeway.com','1701 Santa rita rd','Pleasanton',94566,925-417-5530,now(),now());
+
 
 -- PRODUCE TABLE
 
